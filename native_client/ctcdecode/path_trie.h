@@ -16,7 +16,7 @@
 template<class DataT>
 struct TreeNode{
 	std::shared_ptr<TreeNode<DataT>> parent;
-    std::vector<std::shared_ptr<TreeNode<DataT>>> children;
+    // std::vector<std::shared_ptr<TreeNode<DataT>>> children;
 
     DataT data;
 
@@ -108,8 +108,7 @@ private:
 // TreeNode implementation
 template<class NodeDataT, class ChildDataT>
 std::shared_ptr<TreeNode<NodeDataT>> add_child(std::shared_ptr<TreeNode<NodeDataT>> const& node, ChildDataT&& data_){
-    node->children.push_back(std::make_shared<TreeNode<NodeDataT>>(node, std::forward<ChildDataT>(data_)));
-    return node->children.back();
+    return std::make_shared<TreeNode<NodeDataT>>(node, std::forward<ChildDataT>(data_));
 }
 
 template<class DataT>

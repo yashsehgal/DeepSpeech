@@ -172,16 +172,7 @@ void PathTrie::iterate_to_vec(std::vector<PathTrie*>& output) {
     score = log_sum_exp(log_prob_b_prev, log_prob_nb_prev);
 
     if (previous_timesteps != nullptr) {
-      timesteps = nullptr;
-      for (auto const& child : previous_timesteps->children) {
-        if (child->data == new_timestep) {
-            timesteps=child;
-            break;
-        }
-      }
-      if (timesteps == nullptr){
-          timesteps = add_child(previous_timesteps, new_timestep);
-      }
+      timesteps = add_child(previous_timesteps, new_timestep);
     }
     previous_timesteps=nullptr;
 
